@@ -4,10 +4,22 @@ import java.util.Random;
 
 public class Hangman
 {
+	/** This instantiates variables that will be 
+	 * used throughout the methods below in this
+	 * class.
+	 */
 	private int wins;
 	private int loses;
 	private String currentWord;
 	
+	/** This method reads the previous dictionary file
+	 * and creates a new instance of it. This allows
+	 * this file to import words2.txt into the new
+	 * instance where dictionary will read this file
+	 * and then choose a random word that will be used
+	 * to play hangman with.
+	 * @throws Exception
+	 */
 	public Hangman() throws Exception
 	{
 		Dictionary myDictionary = new Dictionary("words2.txt");
@@ -15,6 +27,14 @@ public class Hangman
 		currentWord = myDictionary.chooseWord();
 		
 	}
+	/** This following two methods loadWL() and writeWL()
+	 * go hand and hand since they will both
+	 * file will load the number of wins and 
+	 * loses into the txt file WL.txt. This means
+	 * that it is able to load and pull from the file
+	 * so that the Hangman() method can print the total
+	 * number of wins and loses.
+	 */
 	public void loadWL()
 	{
 		try
@@ -51,6 +71,27 @@ public class Hangman
 			e.printStackTrace();
 		}
 	}
+	/** This is the primary method that will play
+	 * the hangman game if the user chooses to. It 
+	 * consists of another instaniation of Dictionary
+	 * so that each time the user chooses to play again,
+	 * whether they won or lost, there will be a new
+	 * word. It also has various loops and if-statements
+	 * that allow the repetition of asking for a letter
+	 * if the user has not run out of lives or has
+	 * not guessed the word (meaning if these happen the
+	 * loop will stop). It also has a for loop that sets
+	 * the word equal to * within a character array to 
+	 * hide the word from the user. It then goes into the
+	 * while loop to see if the character array (censored)
+	 * has an equal value to the inputted letter. If it
+	 * is true, it will replace the * with the guessed
+	 * letter. This will continue until the game is over
+	 * and then it will ask whether the user wants to
+	 * play again or quit. No matter there answer, it will
+	 * print the wins and loses of the round and total.
+	 * @throws Exception
+	 */
 	public void playGame() throws Exception
 	{
 		Dictionary myDictionary = new Dictionary("words2.txt");
